@@ -86,7 +86,9 @@
     "rimraf": "2.5.4",
     "shared-git-hooks": "1.2.1",
     "uglify-js": "2.7.0",
-    "watchify": "3.7.0"
+    "watchify": "3.7.0",
+    "airbitz-core-js-ui": "git@github.com:Airbitz/airbitz-core-js-ui.git",
+    "airbitz-core-js": "git@github.com:Airbitz/airbitz-core-js.git"
   },
   "config": {
     "js_entry_file_build": "./src/components.jsx",

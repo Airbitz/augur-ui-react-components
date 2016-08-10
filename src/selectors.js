@@ -1,4 +1,5 @@
 import activePage from './selectors/active-page';
+import abc from './selectors/abc';
 import authForm from './selectors/auth-form';
 import orderCancellation from './selectors/order-cancellation';
 import createMarketForm from './selectors/create-market-form';
@@ -24,6 +25,7 @@ import tradeCommitLock from './selectors/trade-commit-lock';
 // all selectors should go here
 const selectors = {
 	activePage,
+  abc,
 	authForm,
 	orderCancellation,
 	createMarketForm,

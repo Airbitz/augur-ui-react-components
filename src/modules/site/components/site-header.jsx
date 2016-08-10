@@ -51,16 +51,20 @@ const SiteHeader = (p) => (
 						}
 				</Link>
 			}
-			{!p.loginAccount.id &&
+			{/*!p.loginAccount.id &&
 				<Link className={classnames('site-nav-link', AUTH_TYPES[p.activePage], { active: !!AUTH_TYPES[p.activePage] })} {...p.authLink}>
 					Sign Up / Login
 				</Link>
-			}
+      */}
 			{p.loginAccount.id &&
 				<Link className={classnames('site-nav-link', ACCOUNT, { active: p.activePage === ACCOUNT })} {...p.accountLink}>
 					{p.accountLinkText}
 				</Link>
-			}
+      }
+			{!p.loginAccount.id && [
+        <Link key="login" className={classnames('site-nav-link')} {...p.loginLink}>Sign In</Link>,
+        <Link key="register" className={classnames('site-nav-link')} {...p.registerLink}>Register</Link>,
+      ]}
 		</nav>
 	</header>
 );
@@ -74,7 +78,9 @@ SiteHeader.propTypes = {
 	myPositionsLink: React.PropTypes.object,
 	transactionsLink: React.PropTypes.object,
 	authLink: React.PropTypes.object,
-	portfolioTotals: React.PropTypes.object
+	portfolioTotals: React.PropTypes.object,
+  airbitzRegisterLink: React.PropTypes.object,
+  airbitzLoginLink: React.PropTypes.object
 };
 
 export default SiteHeader;
