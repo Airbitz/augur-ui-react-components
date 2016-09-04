@@ -4,7 +4,7 @@ import SiteHeader from '../../site/components/site-header';
 import SiteFooter from '../../site/components/site-footer';
 import Link from '../../link/components/link';
 import Input from '../../common/components/input';
-import ABC from '../../../selectors/abc.js'
+import ABC from '../../../selectors/abc.js';
 
 export default class AccountPage extends Component {
 	static propTypes = {
@@ -134,10 +134,12 @@ export default class AccountPage extends Component {
 									</tr>
 									<tr className={classnames('account-info-item', { displayNone: p.account.localNode })}>
 										<td colSpan="2">
-											<button className="button" onClick={() => {
-                          ABC.manageAccount(p.account, function(result, account) { });
-                      }}>
-                        Manage Authentication
+											<button
+												className="button" onClick={() => {
+													ABC.manageAccount(p.account, (result, account) => { });
+												}}
+											>
+												Manage Authentication
 											</button>
 										</td>
 									</tr>

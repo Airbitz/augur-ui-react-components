@@ -25,7 +25,7 @@ import tradeCommitLock from './selectors/trade-commit-lock';
 // all selectors should go here
 const selectors = {
 	activePage,
-  abc,
+	abc,
 	authForm,
 	orderCancellation,
 	createMarketForm,

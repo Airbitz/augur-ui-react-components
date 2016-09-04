@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import { ACCOUNT, MARKETS, TRANSACTIONS, MY_POSITIONS, MY_MARKETS, MY_REPORTS } from '../../site/constants/pages';
-import { AUTH_TYPES } from '../../auth/constants/auth-types';
+// import { AUTH_TYPES } from '../../auth/constants/auth-types';
 import Link from '../../link/components/link';
 import ValueDenomination from '../../common/components/value-denomination';
 
@@ -51,20 +51,15 @@ const SiteHeader = (p) => (
 						}
 				</Link>
 			}
-			{/*!p.loginAccount.id &&
-				<Link className={classnames('site-nav-link', AUTH_TYPES[p.activePage], { active: !!AUTH_TYPES[p.activePage] })} {...p.authLink}>
-					Sign Up / Login
-				</Link>
-      */}
 			{p.loginAccount.id &&
 				<Link className={classnames('site-nav-link', ACCOUNT, { active: p.activePage === ACCOUNT })} {...p.accountLink}>
 					{p.accountLinkText}
 				</Link>
       }
 			{!p.loginAccount.id && [
-        <Link key="login" className={classnames('site-nav-link')} {...p.loginLink}>Sign In</Link>,
-        <Link key="register" className={classnames('site-nav-link')} {...p.registerLink}>Register</Link>,
-      ]}
+				<Link key="login" className={classnames('site-nav-link')} {...p.loginLink}>Sign In</Link>,
+				<Link key="register" className={classnames('site-nav-link')} {...p.registerLink}>Register</Link>,
+			]}
 		</nav>
 	</header>
 );
@@ -79,8 +74,8 @@ SiteHeader.propTypes = {
 	transactionsLink: React.PropTypes.object,
 	authLink: React.PropTypes.object,
 	portfolioTotals: React.PropTypes.object,
-  airbitzRegisterLink: React.PropTypes.object,
-  airbitzLoginLink: React.PropTypes.object
+	airbitzRegisterLink: React.PropTypes.object,
+	airbitzLoginLink: React.PropTypes.object
 };
 
 export default SiteHeader;

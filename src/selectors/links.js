@@ -1,5 +1,5 @@
 import { ACCOUNT, MARKETS, MAKE, TRANSACTIONS, M, MY_POSITIONS, MY_MARKETS, MY_REPORTS } from '../modules/site/constants/pages';
-import { LOGIN } from '../modules/auth/constants/auth-types';
+// import { LOGIN } from '../modules/auth/constants/auth-types';
 
 export default {
 	marketsLink: { href: '/', onClick: (url) => require('../selectors').update({ activePage: MARKETS, url }) },
@@ -12,17 +12,17 @@ export default {
 	myMarketsLink: { href: '/my-markets', onClick: (url) => require('../selectors').update({ activePage: MY_MARKETS, url }) },
 	myReportsLink: { href: '/my-reports', onClick: (url) => require('../selectors').update({ activePage: MY_REPORTS, url }) },
 	loginLink: {
-    onClick: (url) => {
-      require('../selectors').abc.openLoginWindow(function(result, account) {
-      });
-      return false;
-    }
-  },
+		onClick: (url) => {
+			require('../selectors').abc.openLoginWindow((result, account) => {
+			});
+			return false;
+		}
+	},
 	registerLink: {
-    onClick: (url) => {
-      require('../selectors').abc.openRegisterWindow(function(result, account) {
-      });
-      return false;
-    }
-  }
+		onClick: (url) => {
+			require('../selectors').abc.openRegisterWindow((result, account) => {
+			});
+			return false;
+		}
+	}
 };
