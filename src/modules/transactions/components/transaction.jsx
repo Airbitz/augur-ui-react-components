@@ -6,8 +6,24 @@ import { LOGIN, FUND_ACCOUNT } from '../../auth/constants/auth-types';
 import { SCALAR } from '../../markets/constants/market-types';
 import ValueDenomination from '../../common/components/value-denomination';
 
+function liveDangerously(thisBetterBeSanitized) { return { __html: thisBetterBeSanitized }; }
+
 const Transaction = (p) => {
 	const nodes = {};
+
+	const marketDescription = () => {
+		const description = () => <span className="market-description" title={p.data.description || p.data.marketDescription}>{p.data.description ? p.data.description.substring(0, 100) + (p.data.description.length > 100 && '...' || '') : p.data.marketDescription.substring(0, 100) + (p.data.marketDescription.length > 100 && '...' || '')}</span>;
+
+		if ((p.data.description || p.data.marketDescription) && p.data.marketLink) {
+			return (
+				<Link onClick={p.data.marketLink.onClick}>
+					{description()}
+				</Link>
+			);
+		}
+
+		return <span>{description()}</span>;
+	};
 
 	switch (p.type) {
 	case BUY:
@@ -38,6 +54,7 @@ const Transaction = (p) => {
 		default:
 			break;
 		}
+
 		nodes.description = (
 			<span className="description">
 				<span className="action">{nodes.action}</span>
@@ -50,11 +67,10 @@ const Transaction = (p) => {
 				<span className="at">@</span>
 				<ValueDenomination className="avgPrice" {...p.data.avgPrice} />
 				<br />
-				<span className="market-description" title={p.data.marketDescription}>
-					{p.data.marketDescription.substring(0, 100) + (p.data.marketDescription.length > 100 && '...' || '')}
-				</span>
+				{marketDescription()}
 			</span>
 		);
+
 		break;
 	case LOGIN:
 		nodes.description = (
@@ -77,11 +93,11 @@ const Transaction = (p) => {
 				<strong>{p.data.type}</strong>
 				<span>market</span>
 				<br />
-				<span className="market-description" title={p.data.description}>{p.data.description.substring(0, 100) + (p.data.description.length > 100 && '...' || '')}</span>
+				{marketDescription()}
 			</span>
 		);
 		break;
-	case COMMIT_REPORT:
+	case COMMIT_REPORT: {
 		if (p.data.market.type === SCALAR) {
 			nodes.description = (
 				<span className="description">
@@ -91,7 +107,7 @@ const Transaction = (p) => {
 						<strong className="unethical"> and Unethical</strong>
 					}
 					<br />
-					<span className="market-description" title={p.data.market.description}>{p.data.market.description.substring(0, 100) + (p.data.market.description.length > 100 && '...' || '')}</span>
+					{marketDescription()}
 				</span>
 			);
 		} else {
@@ -103,17 +119,18 @@ const Transaction = (p) => {
 						<strong className="unethical"> and Unethical</strong>
 					}
 					<br />
-					<span className="market-description" title={p.data.market.description}>{p.data.market.description.substring(0, 100) + (p.data.market.description.length > 100 && '...' || '')}</span>
+					{marketDescription()}
 				</span>
 			);
 		}
 		break;
+	}
 	case GENERATE_ORDER_BOOK:
 		nodes.description = (
 			<span className="description">
 				<span>Generate Order Book</span>
 				<br />
-				<span className="market-description" title={p.data.description}>{p.data.description.substring(0, 100) + (p.data.description.length > 100 && '...' || '')}</span>
+				{marketDescription()}
 			</span>
 		);
 		break;
@@ -127,9 +144,7 @@ const Transaction = (p) => {
 				<span className="at">@</span>
 				<ValueDenomination className="avgPrice" {...p.data.order.price} />
 				<br />
-				<span className="market-description" title={p.data.market.description}>
-					{p.data.market.description.substring(0, 100) + (p.data.market.description.length > 100 && '...' || '')}
-				</span>
+				{marketDescription()}
 			</span>
 
 		);
@@ -149,8 +164,8 @@ const Transaction = (p) => {
 			{nodes.description}
 
 			<span className="value-changes">
-				{!!p.gas && !!p.gas.value &&
-					<ValueDenomination className="value-change gas" {...p.gas} prefix="gas:" />
+				{!!p.data.gasFees && !!p.data.gasFees.value &&
+					<ValueDenomination className="value-change gasFees" {...p.data.gasFees} prefix="estimated gas cost:" />
 				}
 				{!!p.ether && !!p.ether.value &&
 					<ValueDenomination className="value-change ether" {...p.ether} prefix="total:" />
@@ -160,13 +175,13 @@ const Transaction = (p) => {
 			{p.status && p.hash ?
 				<Link href={`https://morden.ether.camp/transaction/${p.hash}`} target="_blank">
 					<div className="status-and-message">
-						<span className="message">{p.message}</span>
+						<span className="message" dangerouslySetInnerHTML={liveDangerously(p.message)} />
 						<br />
 						<span className="status">{p.status}</span>
 					</div>
 				</Link>
 				: <div className="status-and-message">
-					<span className="message">{p.message}</span>
+					<span className="message" dangerouslySetInnerHTML={liveDangerously(p.message)} />
 					<br />
 					<span className="status">{p.status}</span>
 				</div>
