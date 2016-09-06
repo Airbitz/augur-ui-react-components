@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import SiteHeader from '../../site/components/site-header';
 import SiteFooter from '../../site/components/site-footer';
 import AuthForm from '../../auth/components/auth-form';
+import Link from '../../link/components/link';
 
 const AuthPage = (p) => (
 	<main className="page auth">
@@ -15,13 +16,18 @@ const AuthPage = (p) => (
 					<i className="negative">
 						It is impossible to recover your account if your credentials get lost!
 					</i>
-				</b>
+				</b><br />
+				Click
+				 [Sign Up With Airbitz]
+				 to create an encrypted and backed up account using a simple username and password.
 			</div>
 		</header>
 		<AuthForm className="auth-form" {...p.authForm} />
 		<SiteFooter />
 	</main>
 );
+
+
 
 AuthPage.propTypes = {
 	className: PropTypes.string,

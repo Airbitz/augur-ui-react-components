@@ -174,6 +174,13 @@ export default class AuthForm extends Component {
 					value={p.submitButtonText}
 				/>
 				<Link
+					className="airbitz-link"
+					href={p.airbitzLink.href}
+					onClick={p.airbitzLink.onClick}
+				>
+					{p.airbitzLinkText}
+				</Link>
+				<Link
 					type="button"
 					className="button x-button"
 					title="Close"
