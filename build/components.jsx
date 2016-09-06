@@ -37970,8 +37970,7 @@ var AuthForm = function (_Component) {
 				_react2.default.createElement(
 					_link2.default,
 					{
-						className: 'airbitz-link',
-						href: p.airbitzLink.href,
+						className: (0, _classnames2.default)('button', 'airbitz-button'),
 						onClick: p.airbitzLink.onClick
 					},
 					p.airbitzLinkText
@@ -40069,7 +40068,11 @@ var Link = function (_Component) {
 	_createClass(Link, [{
 		key: 'render',
 		value: function render() {
-			return _react2.default.createElement('a', _extends({}, this.props, { href: this.props.href, className: 'link ' + this.props.className, onClick: this.handleClick }));
+			if (this.props.href) {
+				return _react2.default.createElement('a', _extends({}, this.props, { href: this.props.href, className: 'link ' + this.props.className, onClick: this.handleClick }));
+			} else {
+				return _react2.default.createElement('a', _extends({}, this.props, { className: 'link ' + this.props.className, onClick: this.handleClick }));
+			}
 		}
 	}]);
 
@@ -42883,9 +42886,7 @@ SiteHeader.propTypes = {
 	myPositionsLink: _react2.default.PropTypes.object,
 	transactionsLink: _react2.default.PropTypes.object,
 	authLink: _react2.default.PropTypes.object,
-	portfolioTotals: _react2.default.PropTypes.object,
-	airbitzRegisterLink: _react2.default.PropTypes.object,
-	airbitzLoginLink: _react2.default.PropTypes.object
+	portfolioTotals: _react2.default.PropTypes.object
 };
 
 exports.default = SiteHeader;

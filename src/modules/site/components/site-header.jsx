@@ -75,8 +75,6 @@ SiteHeader.propTypes = {
 	transactionsLink: React.PropTypes.object,
 	authLink: React.PropTypes.object,
 	portfolioTotals: React.PropTypes.object,
-	airbitzRegisterLink: React.PropTypes.object,
-	airbitzLoginLink: React.PropTypes.object
 };
 
 export default SiteHeader;

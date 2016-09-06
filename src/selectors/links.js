@@ -14,14 +14,16 @@ export default {
 	myReportsLink: { href: '/my-reports', onClick: (url) => require('../selectors').update({ activePage: MY_REPORTS, url }) },
 	loginLink: {
 		onClick: (url) => {
-			require('../selectors').abc.openLoginWindow((result, account) => {
+			var abc = require('../selectors').abc
+			abc.openLoginWindow((error, account) => {
 			});
 			return false;
 		}
 	},
 	registerLink: {
 		onClick: (url) => {
-			require('../selectors').abc.openRegisterWindow((result, account) => {
+			var abc = require('../selectors').abc
+			abc.openRegisterWindow((error, account) => {
 			});
 			return false;
 		}
