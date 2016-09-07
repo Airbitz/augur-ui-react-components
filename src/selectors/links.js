@@ -11,21 +11,5 @@ export default {
 	accountLink: { href: '/account', onClick: (url) => require('../selectors').update({ activePage: ACCOUNT, url }) },
 	myPositionsLink: { href: '/my-positions', onClick: (url) => require('../selectors').update({ activePage: MY_POSITIONS, url }) },
 	myMarketsLink: { href: '/my-markets', onClick: (url) => require('../selectors').update({ activePage: MY_MARKETS, url }) },
-	myReportsLink: { href: '/my-reports', onClick: (url) => require('../selectors').update({ activePage: MY_REPORTS, url }) },
-	loginLink: {
-		onClick: (url) => {
-			var abc = require('../selectors').abc
-			abc.openLoginWindow((error, account) => {
-			});
-			return false;
-		}
-	},
-	registerLink: {
-		onClick: (url) => {
-			var abc = require('../selectors').abc
-			abc.openRegisterWindow((error, account) => {
-			});
-			return false;
-		}
-	}
+	myReportsLink: { href: '/my-reports', onClick: (url) => require('../selectors').update({ activePage: MY_REPORTS, url }) }
 };
