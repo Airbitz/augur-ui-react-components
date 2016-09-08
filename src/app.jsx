@@ -35,7 +35,7 @@ export default function (appElement, selectors) {
 		accountLink: p.links && p.links.accountLink || undefined,
 		accountLinkText: p.loginAccount && p.loginAccount.linkText || undefined,
 		myPositionsLink: p.links && p.links.myPositionsLink || undefined,
-		portfolioTotals: p.portfolio && p.portfolio.totals || undefined
+		portfolioTotals: p.portfolio && p.portfolio.totals || undefined,
 	};
 
 	switch (p.activePage) {
@@ -57,6 +57,7 @@ export default function (appElement, selectors) {
 				siteHeader={p.siteHeader}
 				account={p.loginAccount}
 				onChangePass={p.loginAccount.onChangePass}
+        onAirbitzManageAccount={p.loginAccount.airbitzManageAccount}
 			/>
 		);
 		break;

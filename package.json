@@ -24,15 +24,13 @@
     "deploy:demo": "firebase deploy -f augur-ui",
     "coverage": "NODE_ENV=test istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly -- -R spec --compilers js:babel-register && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage",
     "______": "",
-    "build:all": "npm run -s clean:build && npm run -s clean:lib && (npm run -s build:css & npm run -s build:assets & npm run -s build:assertions & npm run -s build:js) && npm run -s build:airbitz && npm run -s build:finish",
+    "build:all": "npm run -s clean:build && npm run -s clean:lib && (npm run -s build:css & npm run -s build:assets & npm run -s build:assertions & npm run -s build:js) && npm run -s build:finish",
     "build:assets": "cp -R ./src/assets/. ./build/assets && echo ---------ASSETS---------`date +%r`",
     "build:css": "lessc $npm_package_config_less_entry_file | cleancss --s0 > ./build/styles.css | sed -e 's~less~css~' && echo ---------CSS------------`date +%r`",
     "build:js": "npm run -s build:js:browserify | npm run -s partial:uglify > ./build/components.jsx && echo ---------JS-------------`date +%r`",
     "build:js:browserify": "browserify $npm_package_config_js_entry_file_build --extension=.js --extension=.jsx --detectGlobals false --standalone augur-react-components -t [ babelify --presets [ es2015 stage-0 react ] ] -t [envify purge] | derequire",
     "build:assertions": "npm run -s build:assertions:do > ./lib/assertions.js && echo ---------ASSERTIONS-----`date +%r`",
     "build:assertions:do": "browserify \"./src/assertions.js\" --exclude chai --extension=.js --extension=.jsx --detectGlobals false --standalone augur-react-components -t [ babelify --presets [ es2015 stage-0 react ] ] -t [envify purge] | derequire",
-    "build:airbitz": "mkdir -p demo/abcui && npm run -s build:airbitz:copy",
-    "build:airbitz:copy": "rsync -avz node_modules/airbitz-core-js-ui/assets demo/abcui/",
     "build:finish": "echo ---------FINISHED-------`date +%r`",
     "_______": "On change create build",
     "watch:all": "npm run -s clean:demo && (npm run -s watch:css & npm run -s watch:assets & npm run -s watch:js & npm run -s watch:html)",
@@ -88,9 +86,7 @@
     "rimraf": "2.5.4",
     "shared-git-hooks": "1.2.1",
     "uglify-js": "2.7.0",
-    "watchify": "3.7.0",
-    "airbitz-core-js-ui": "git@github.com:Airbitz/airbitz-core-js-ui.git",
-    "airbitz-core-js": "git@github.com:Airbitz/airbitz-core-js.git"
+    "watchify": "3.7.0"
   },
   "config": {
     "js_entry_file_build": "./src/components.jsx",
